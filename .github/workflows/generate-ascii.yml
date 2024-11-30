@@ -11,5 +11,6 @@ jobs:
 
         - name: execute shell script
           run: |
+            ls -ltra
             chmod +x ascii-script.sh
             ./ascii-script.sh
