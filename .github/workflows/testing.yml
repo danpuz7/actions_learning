@@ -9,11 +9,9 @@ jobs:
         - name: Checks out repo
           uses: actions/checkout@v4
 
-        - name: welcome message
-          run: echo "hello"
-
-        - name: list files
-          run: ls
-
-        - name: read readme
-          run: cat README.md
+        - name: welcome, list files, read readme
+          run: |
+            echo "hello"
+            ls -ltra
+            cat README.md
+        
