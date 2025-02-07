@@ -13,7 +13,7 @@ jobs:
           run: cowsay -f dragon "I love elise" >> dragonl.txt
           
         - name: upload dragon text file
-        - uses: actions/upload-artifact@v4
+          uses: actions/upload-artifact@v4
           with:
             name: dragon-text-file
             path: dragon.txt
@@ -34,12 +34,11 @@ jobs:
         needs: [test_job_2]
         runs-on: ubuntu-latest
         steps:
-
         - name: download dragon text file
           uses: actions/download-artifact@v4
           with:
             name: dragon-text-file
-            
+
         - name: read file
           run: cat dragon.txt
 
