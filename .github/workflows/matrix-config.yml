@@ -5,10 +5,13 @@ on:
 
 jobs:
     deploy:
-        strategy:
-            matrix:
+        strategy: 
+            matrix: #if any of the six jobs fail, the rest will be canceled
                 os: [ubuntu-latest, ubuntu-20.0.4, windows-latest]
                 images: [hello-world, alpine]
+                exclude: #exclude the alpine image on the windows machine
+                    - images: alpine
+                      os: windows-latest
         runs-on: ${{ matrix.os }}
         steps:
         - name: docker on our system
