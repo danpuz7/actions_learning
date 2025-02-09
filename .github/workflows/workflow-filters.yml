@@ -5,7 +5,7 @@ on:
     # - cron: "*/59 * * * *"
     push:
         branches: #will trigger if there is a push to main branch
-            - main
+            - master
             - '!feature/*' #ignores branches that use exclamation mark
         #branches-ignore: #ignores if its pushed on one of these branches
            # - feature/* 
@@ -17,7 +17,7 @@ on:
         paths-ignore: #will run on any pull request that includes a change on any file except readme
             - README.md
         branches:
-            - main #will only run on pull request that targets main branch
+            - master #will only run on pull request that targets main branch
 jobs:
     hello:
         runs-on: ubuntu-latest
