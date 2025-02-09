@@ -6,12 +6,17 @@ on:
 jobs:
     deploy:
         strategy: 
-            matrix: #if any of the six jobs fail, the rest will be canceled
+            fail-fast: true #if any of the concurrent jobs fail, the rest will be canceled unless this is false
+            #max-parallel: 2 #can run only 2 parallel jobs at a time
+            matrix: 
                 os: [ubuntu-latest, ubuntu-20.0.4, windows-latest]
                 images: [hello-world, alpine]
                 exclude: #exclude the alpine image on the windows machine
                     - images: alpine
                       os: windows-latest
+                include: 
+                    - images: amd64/alpine
+                      os: ubuntu-20.04
         runs-on: ${{ matrix.os }}
         steps:
         - name: docker on our system

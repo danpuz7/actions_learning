@@ -1,0 +1,25 @@
+name: exploring filters and activities
+on:
+    workflow_dispatch:
+    # schedule:
+    # - cron: "*/59 * * * *"
+    push:
+        branches: #will trigger if there is a push to main branch
+            - main
+            - '!feature/*' #ignores branches that use exclamation mark
+        #branches-ignore: #ignores if its pushed on one of these branches
+           # - feature/* 
+           # - test/**
+    pull_request:
+        types:
+          - opened
+          - closed
+        paths-ignore: #will run on any pull request that includes a change on any file except readme
+            - README.md
+        branches:
+            - main #will only run on pull request that targets main branch
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+        steps:
+        - run: echo this workflow/job/step is executed for event type - ${{ github.event_name }}
